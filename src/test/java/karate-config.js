@@ -5,7 +5,7 @@ function() {
     var baseurl = karate.properties['baseurl'];
     var test_user_ns = karate.properties['test_user_ns'];
     var test_user_key = karate.properties['test_user_key'];
-    
+
     karate.log('karate.env system property was:', env);
 
 
@@ -25,7 +25,7 @@ function() {
         baseurl='https://localhost:443'
 
     }
-    
+
     if (!test_user_ns) {
 
         test_user_ns='guest'
@@ -41,11 +41,13 @@ function() {
 
 
     }
-    
+
         // Admin Config
-        config.AdminAuth="Basic " +adminauth,
-        config.AdminBaseUrl=adminbaseurl,
-        config.BaseUrl=baseurl
+        config.AdminAuth="Basic " +adminauth;
+        config.AdminBaseUrl=adminbaseurl;
+
+        if (baseurl.slice(-1) == '/') baseurl = baseurl.slice(0, -1);
+        config.BaseUrl=baseurl;
 
         return config;
 }
