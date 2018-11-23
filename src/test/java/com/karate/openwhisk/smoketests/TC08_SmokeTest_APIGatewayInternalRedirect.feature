@@ -58,9 +58,9 @@ Feature: This feature file will test the Api gateway internal redirect feature f
     * match invokeAction.responseStatus == 200
     * match invokeAction.response contains {'url': '#(echoEndpoint)'}
     # here headers are the redirect request headers echoed from the service (in the body)
-    * match invokeAction.response.headers contains {'x-test-req': 'test', 'x-test-req2': 'test2'} || {'X-Test-Req': 'test', 'X-Test-Req2': 'test2'}
+    * match invokeAction.response.headers contains {'x-test-req': 'test', 'x-test-req2': 'test2'}
     # here we check that custom response headers were set after apigw redirected to echoing service
-    * match invokeAction.responseHeaders contains {'X-Test-Res': [test], 'X-Test-Res2': [test2]} || {'x-test-res': [test], 'x-test-res2': [test2]}
+    * match invokeAction.responseHeaders contains {'x-test-res': [test], 'x-test-res2': [test2]}
     * match invokeAction.responseHeaders contains {'X-Action-Redirected': ['1']} || {'x-action-redirected': ['1']}
 
     * print "Successfully invoked web action with api-gw redirect feature to " + echoEndpoint + " + checked that redirect and response headers are fine."
